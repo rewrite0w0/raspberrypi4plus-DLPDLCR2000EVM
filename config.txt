@@ -1,0 +1,99 @@
+# For more options and information see
+# http://rptl.io/configtxt
+# Some settings may impact device functionality. See link above for details
+
+# Uncomment some or all of these to enable the optional hardware interfaces
+dtparam=i2c_arm=on
+dtparam=i2s=on
+dtparam=spi=on
+#dtparam=i2c1=on
+#dtparam=i2c22=on
+
+# Enable audio (loads snd_bcm2835)
+# dtparam=audio=on
+
+# Additional overlays and parameters are documented
+# /boot/firmware/overlays/README
+
+# Automatically load overlays for detected cameras
+camera_auto_detect=1
+
+# Automatically load overlays for detected DSI displays
+display_auto_detect=1
+
+# Automatically load initramfs files, if found
+auto_initramfs=1
+
+# Enable DRM VC4 V3D driver
+# dtoverlay=vc4-kms-v3d
+max_framebuffers=2
+
+# Don't have the firmware create an initial video= setting in cmdline.txt.
+# Use the kernel's default instead.
+disable_fw_kms_setup=1
+
+# Disable compensation for displays with overscan
+disable_overscan=1
+
+# Run as fast as firmware / board allows
+arm_boost=1
+
+[cm4]
+# Enable host mode on the 2711 built-in XHCI USB controller.
+# This line should be removed if the legacy DWC2 controller is required
+# (e.g. for USB device mode) or if USB support is not required.
+otg_mode=1
+
+hdmi_force_hotplug=1
+#hdmi_group=2
+#hdmi_mode=35
+hdmi_safe=1
+
+
+[all]
+
+#gpu_mem=512
+#dtoverlay=w1-gpio
+#enable_uart=1
+
+# Add support for software i2c on gpio pins
+dtoverlay=i2c-gpio,i2c_gpio_sda=23,i2c_gpio_scl=24,i2c_gpio_delay_us=2
+
+# DPI Video Setup
+dtoverlay=dpi18
+overscan_left=0
+overscan_right=0
+overscan_top=0
+overscan_bottom=0
+#framebuffer_width=854
+#framebuffer_height=480
+
+framebuffer_width=1920
+framebuffer_height=1080
+
+enable_dpi_lcd=1
+display_default_lcd=1
+dpi_group=2
+dpi_mode=87
+
+dpi_output_format=458773
+hdmi_timings=854 0 14 4 12 480 0 2 3 9 0 0 0 60 0 32000000 3
+
+
+#dtoverlay=vc4-kms-v3d
+#max_framebuffers=2
+
+#dtoverlay=vc4-kms-dpi-generic, clock-frequency=13824000
+#dtparam=hactive = 640, hfp=14, hsync=4, hbp=12
+#dtparam=vactive=360,vfp=2,vsync=3,vbp=9
+
+
+#dtoverlay=vc4-kms-dpi-generic,clock-frequency=25000000
+
+dtparam=hactive=640,hfp=14,hsync=4,hbp=12
+
+dtparam=vactive=360,vfp=2,vsync=3,vbp=9
+
+#using custom board dlp0.1 check  intellar.ca  for details
+
+#dtoverlay=i2c-gpio,i2c_gpio_sda=23,i2c_gpio_scl=24,i2c_gpio_delay_us=2, bus=1
